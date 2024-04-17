@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricket Player Info</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .search, .about {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .search h2, .about h2 {
+            margin-top: 0;
+        }
+
+        .search label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .search input[type="text"] {
+            width: 91%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .search button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+/* .players {
+    border: 2px solid green;
+} */
+
+.player-cards {
+    /* display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Adjust the minmax value as needed */
+    /*gap: 15px;
+    /* border: 2px solid black; */
+    border-radius: 8px;
+    overflow: hidden;  
+    background-color: #f9f9f9;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.9); /* Optional: Add shadow effect */
+    margin: 10px 10px 10px 10px;
+}
+
+.to-margin-players {
+    /* border: 2px solid green; */
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Adjust the minmax value as needed */
+    gap: 15px;
+    /* border: 2px solid black; */
+    border-radius: 8px;
+    overflow: hidden;
+    padding: 10px 10px 10px 10px;
+}
+
+/* .player-image {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid #ccc; /* Optional: Add border between image and details */
+/* } */
+
+/* .player-image img {
+    width: 100%;
+    height: auto;
+} */
+
+.player-details {
+    padding: 15px;
+}
+
+.player-details h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.player-details p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.player-cards a {
+    text-decoration: none;
+    border: 2px solid black;
+    padding: 5px 5px 5px 5px;
+    transition: transform 0.4s;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.player-cards a:hover {
+    transform: scale(1.1);
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    /* border: 2px solid black; */
+}
+
+.pagination span {
+    margin-top: -10px;
+}
+
+.pagination a {
+    text-decoration: none;
+    margin: 0px 10px 10px 10px;
+    border: 2px solid black;
+    padding: 7px 7px 7px 7px;
+    background-color: aqua;
+    border-radius: 10px;
+    color: black;
+    transition: transform 0.4s;
+}
+
+.pagination a:hover {
+    background-color: rgba(174, 255, 255, 0.714);
+    transform: scale(1.1);
+}
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            /* position: fixed; */
+            bottom: 0;
+            width: 100%;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Cricket Player Info</h1>
+    </header>
+    <main>
+        <section class="search">
+            <h2>Search for a Player</h2>
+            <form id="playerForm" method="GET">
+                <label for="playerName">Player Name:</label>
+                <input type="text" id="playerName" name="playerName" required>
+                <button type="submit">Search</button>
+            </form>
+        </section>
+        <section class="players">
+            <div class="player-cards">
+                <div class="to-margin-players">
+                    <% playerSummaries.forEach(function(player) { %>
+                        <% if(player && player.name !== '') {  %>
+                            <a href= <%= `http://localhost:8080/players/${player.name}` %> >
+                                <div class="player-details">
+                                    <h2><%= player.name %></h2>
+                                    <p>Country: <%= player.country %></p>
+                                    <p>Date of Birth: <%= player.dateOfBirth %></p>
+                                    <!-- Add more player details here as needed -->
+                                </div>
+                            </a>
+                       <% } %>
+                        
+                    <% }); %>
+                <!-- </div> -->
+                <!-- <p><%= playerArr[65].playerName %></p> -->
+                
+            </div>
+        </section>
+        <section class="players" id="playerContainer">
+            <!-- Player cards will be dynamically added here -->
+        </section>
+        <!-- Display pagination links -->
+<div class="pagination">
+    <% if (currentPage > 1) {  %>
+        <a href="/?page=<%= currentPage - 1 %>">Previous</a>
+    <% } %>
+
+    <span>Page <%= currentPage %> of <%= totalPages %></span>
+
+    <% if (currentPage < totalPages) {  %>
+        <a href="/?page=<%= parseInt(currentPage) + 1 %>">Next</a>
+    <% } %>
+</div>
+
+
+    </main>
+    <footer>
+        <p>&copy; 2024 Cricket Player Info</p>
+    </footer>
+
+    <!-- <script src="./node_modules/cric-player-info/playerIndex.js"></script> -->
+<script>
+    document.getElementById('playerForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
+        
+        // Get the player name from the input field
+        var playerName = document.getElementById('playerName').value;
+        
+        // Encode the player name
+        var encodedPlayerName = encodeURIComponent(playerName);
+
+        // Redirect to the players route with the encoded player name
+        window.location.href = '/players/' + encodedPlayerName;
+    });
+    
+</script>
+
+</body>
+</html>

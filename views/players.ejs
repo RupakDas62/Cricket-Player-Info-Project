@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player Summary: <%= playerSummary.name %></title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+            font-size: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            width: 90%;
+            max-width: 800px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .player-image {
+            display: block;
+            margin: 0 auto 20px;
+            width: 100%;
+            max-width: 300px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .summary-item {
+            margin-bottom: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .summary-item span {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+        .summary-item span.label {
+            font-weight: normal;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><%= playerSummary.name %></h1>
+        <img class="player-image" src="<%= playerImageUrls %>" alt="Player Image">
+        <% if(playerSummary.id !== ' -- ' && playerSummary.country !== ' -- ' && playerSummary.dateOfBirth !== ' -- ' && playerSummary.birthPlace !== ' -- ') { %>
+            <div class="summary-item">
+                <span class="label">ID:</span>
+                <span><%= playerSummary.id %></span> 
+                <span class="label">Country:</span>
+                <span><%= playerSummary.country %></span> 
+                <span class="label">Date of Birth:</span>
+                <span><%= playerSummary.dateOfBirth %></span> 
+                <span class="label">Birth Place:</span>
+                <span><%= playerSummary.birthPlace %></span>
+            </div>
+        <% } %>
+        <% if(playerSummary.role !== ' -- ' && playerSummary.battingStyle !== ' -- ' && playerSummary.bowlingStyle !== ' -- ') { %>
+            <div class="summary-item">
+                <span class="label">Role:</span>
+                <span><%= playerSummary.role %></span> 
+                <span class="label">Batting Style:</span>
+                <span><%= playerSummary.battingStyle %></span> 
+                <span class="label">Bowling Style:</span>
+                <span><%= playerSummary.bowlingStyle %></span>
+            </div>
+        <% } %>
+        <% if(playerSummary.teams !== ' -- ') { %>
+            <div class="summary-item">
+                <span class="label">Teams Played:</span>
+                <span><%= playerSummary.teams %></span>
+            </div>
+        <% } %>
+        <% if(playerSummary.iccBattingTestRank !== ' -- ' && playerSummary.iccBattingOdiRank !== ' -- ' && playerSummary.iccBattingT20Rank !== ' -- ') { %>
+            <div class="summary-item">
+                <span class="label">ICC Batting Test Rank:</span>
+                <span><%= playerSummary.iccBattingTestRank %></span>
+                <span class="label">ICC Batting ODI Rank:</span>
+                <span><%= playerSummary.iccBattingOdiRank %></span>
+                <span class="label">ICC Batting T20 Rank:</span>
+                <span><%= playerSummary.iccBattingT20Rank %></span>
+            </div>
+        <% } %>
+        <% if(playerSummary.iccBowlingTestRank !== ' -- ' && playerSummary.iccBowlingOdiRank !== ' -- ' && playerSummary.iccBowlingT20Rank !== ' -- ') { %>
+            <div class="summary-item">
+                <span class="label">ICC Bowling Test Rank:</span>
+                <span><%= playerSummary.iccBowlingTestRank %></span>
+                <span class="label">ICC Bowling ODI Rank:</span>
+                <span><%= playerSummary.iccBowlingOdiRank %></span>
+                <span class="label">ICC Bowling T20 Rank:</span>
+                <span><%= playerSummary.iccBowlingT20Rank %></span>
+            </div>
+        <% } %>
+        <% if(playerSummary.testDebut !== ' -- ' && playerSummary.lastTest !== ' -- ') { %>
+            <div class="summary-item">
+                <span class="label">Test Debut:</span>
+                <span><%= playerSummary.testDebut %></span>
+                <span class="label">Last Test:</span>
+                <span><%= playerSummary.lastTest %></span>
+            </div>
+        <% } %>
+        <% if(playerSummary.odiDebut !== ' -- ' && playerSummary.lastOdi !== ' -- ') { %>
+            <div class="summary-item">
+                <span class="label">ODI Debut:</span>
+                <span><%= playerSummary.odiDebut %></span>
+                <span class="label">Last ODI:</span>
+                <span><%= playerSummary.lastOdi %></span>
+            </div>
+        <% } %>
+        <% if(playerSummary.t20iDebut !== ' -- ' && playerSummary.lastT20i !== ' -- ') { %>
+            <div class="summary-item">
+                <span class="label">T20I Debut:</span>
+                <span><%= playerSummary.t20iDebut %></span>
+                <span class="label">Last T20I:</span>
+                <span><%= playerSummary.lastT20i %></span>
+            </div>
+        <% } %>
+        <% if(playerSummary.iplDebut !== ' -- ' && playerSummary.lastIpl !== ' -- ') { %>
+            <div class="summary-item">
+                <span class="label">IPL Debut:</span>
+                <span><%= playerSummary.iplDebut %></span>
+                <span class="label">Last IPL:</span>
+                <span><%= playerSummary.lastIpl %></span>
+            </div>
+        <% } %>
+    </div>
+</body>
+</html>
