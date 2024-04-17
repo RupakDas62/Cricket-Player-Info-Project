@@ -186,19 +186,7 @@
         <section class="players">
             <div class="player-cards">
                 <div class="to-margin-players">
-                    <% playerSummaries.forEach(function(player) { %>
-                        <% if(player && player.name !== '') {  %>
-                            <a href= <%= `http://localhost:8080/players/${player.name}` %> >
-                                <div class="player-details">
-                                    <h2><%= player.name %></h2>
-                                    <p>Country: <%= player.country %></p>
-                                    <p>Date of Birth: <%= player.dateOfBirth %></p>
-                                    <!-- Add more player details here as needed -->
-                                </div>
-                            </a>
-                       <% } %>
-                        
-                    <% }); %>
+                    
             </div>
         </section>
         <section class="players" id="playerContainer">
@@ -206,15 +194,13 @@
         </section>
         <!-- Display pagination links -->
 <div class="pagination">
-    <% if (currentPage > 1) {  %>
-        <a href="/?page=<%= currentPage - 1 %>">Previous</a>
-    <% } %>
+    
 
-    <span>Page <%= currentPage %> of <%= totalPages %></span>
+    <span>Page 1 of 15</span>
 
-    <% if (currentPage < totalPages) {  %>
-        <a href="/?page=<%= parseInt(currentPage) + 1 %>">Next</a>
-    <% } %>
+    
+        <a href="/?page=2">Next</a>
+    
 </div>
 
 

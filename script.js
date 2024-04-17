@@ -30,6 +30,7 @@ async function fetchPlayerImages(playerName) {
 }
 
 let playerName = "";
+const playerSummaries = [];
 
 app.get('/', async (req, res) => {
     try {
@@ -41,14 +42,14 @@ app.get('/', async (req, res) => {
         const startIndex = (page - 1) * pageSize;
         const endIndex = startIndex + pageSize;
 
-        const playerSummaries = [];
+        
 
         // Fetch player summaries for the current page
         for (let i = startIndex; i < endIndex ; i++) {
             const playerSummary = await cricdata?.getPlayerSummaryByName(playerArr[i].playerName);
             playerSummaries.push(playerSummary);
         }
-
+        // console.log(playerSummaries);
         // Render the page with player summaries for the current page and pagination information
         res.render('index', { playerArr: playerArr, playerSummaries: playerSummaries, currentPage: page < 16 ? page : 15, totalPages: 15 });
     } catch (error) {
@@ -78,6 +79,14 @@ app.get('/players/:playerName', async (req, res) => {
     }
 });
 
+// const data = {
+//     playerSummaries : playerSummaries
+// };
+
+module.exports = {
+    playerSummaries: playerSummaries,
+    
+};
 
 
 
