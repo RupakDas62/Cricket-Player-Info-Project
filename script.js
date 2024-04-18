@@ -4,6 +4,8 @@ const axios = require('axios');
 const app = express();
 const port = 8080;
 const cricdata = require('cric-player-info');
+const path = require('path');
+
 
 const playerArr = require('./node_modules/cric-player-info/playerIndex');
 
@@ -29,7 +31,7 @@ async function fetchPlayerImages(playerName) {
     }
 }
 
-let playerName = "";
+// let playerName = "";
 const playerSummaries = [];
 
 app.get('/', async (req, res) => {
@@ -51,7 +53,7 @@ app.get('/', async (req, res) => {
         }
         // console.log(playerSummaries);
         // Render the page with player summaries for the current page and pagination information
-        res.render('index', { playerArr: playerArr, playerSummaries: playerSummaries, currentPage: page < 16 ? page : 15, totalPages: 15 });
+        res.render('index', { playerSummaries: playerSummaries, currentPage: page > 15 ? 15 : page , totalPages: 15})
     } catch (error) {
         console.error("Error fetching player summaries:", error);
         res.status(500).send('An error occurred while fetching player information.');
@@ -63,7 +65,7 @@ app.get('/', async (req, res) => {
 
 app.get('/players/:playerName', async (req, res) => {
     try {
-        const playerName = req.params.playerName; // Replace '+' with space
+        let playerName = req.params.playerName; // Replace '+' with space
         // console.log(playerName);
         // console.log(cricdata);
         const playerSummary = await cricdata?.getPlayerSummaryByName(playerName);
@@ -79,15 +81,14 @@ app.get('/players/:playerName', async (req, res) => {
     }
 });
 
+// Server-side code
+app.get('/player-summaries', async (req, res) => {
+    // Assuming playerSummaries is defined and populated somewhere in your server-side code
+    res.json(playerSummaries);
+  });
+  
+
 // const data = {
 //     playerSummaries : playerSummaries
 // };
-
-module.exports = {
-    playerSummaries: playerSummaries,
-    
-};
-
-
-
 
