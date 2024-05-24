@@ -2,7 +2,7 @@
 const express = require('express');
 const axios = require('axios');
 const app = express();
-const port = 8080;
+const PORT = process.env.PORT || 8080;
 const cricdata = require('cric-player-info');
 const path = require('path');
 
@@ -13,15 +13,15 @@ app.set('view engine', 'ejs');
 
 // console.log(playerArr);
 
-app.listen(port, () => {
-    console.log(`App is listening at port ${port}`);
+app.listen(PORT, () => {
+    console.log(`App is listening at port ${PORT}`);
   });
 
 // Function to fetch image URLs from Google Custom Search API
 async function fetchPlayerImages(playerName) {
     try {
-        const API_KEY = 'AIzaSyA_AgWV-a5jsOhC6la_oXrwt3phVXQ0P0A'; // Replace with your Google API key
-        const SEARCH_ENGINE_ID = '465da20aa5e0d40e8'; // Replace with your search engine ID
+        const API_KEY = process.env.API_KEY; 
+        const SEARCH_ENGINE_ID = process.env.SEARCH_ENGINE_ID;
         const response = await axios.get(`https://www.googleapis.com/customsearch/v1?key=${API_KEY}&cx=${SEARCH_ENGINE_ID}&searchType=image&q=${playerName}`);
         const imageUrl = response.data.items[0].link;
         return imageUrl;
