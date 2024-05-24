@@ -1,9 +1,0 @@
-[build]
-  command = "npm run build"
-  publish = "public"  # Adjust the publish directory as needed
-  timeout = 20
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
