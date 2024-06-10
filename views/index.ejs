@@ -192,7 +192,7 @@
                             <% var firstName = words[0]; %>
                             <% var lastName = words[words.length - 1]; %>
                             <% urlPlayerName = firstName + "%20" + lastName; %> 
-                            <a href= <%= `http://localhost:8080/players/${urlPlayerName}` %> >
+                            <a href= <%= `/players/${urlPlayerName}` %> >
                                 <div class="player-details">
                                     <h2><%= player.name %></h2>
                                     <p>Country: <%= player.country %></p>
