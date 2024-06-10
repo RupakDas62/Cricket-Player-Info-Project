@@ -6,6 +6,7 @@ const PORT = process.env.PORT || 8080;
 const cricdata = require('cric-player-info');
 const path = require('path');
 
+require('dotenv').config();
 
 const playerArr = require('cric-player-info/playerIndex');
 
